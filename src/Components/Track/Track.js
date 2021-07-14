@@ -14,7 +14,7 @@ const renderAction = (isRemoval)=>{
 }; 
 
 function Track (props){
-    const {name, artist, album, isRemoval } = props;
+    const {name, artist, album, isRemoval } = props.track;
     return (
         <div className="Track">
             <div className="Track-information">

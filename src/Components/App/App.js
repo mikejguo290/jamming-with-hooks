@@ -18,6 +18,11 @@ function App(props) {
     {name:'Call your girlfriend', artist:'Robyn', album:'Body Talk'},
     {name:'Be mine', artist:'Robyn', album:'Robyn'}
   ])
+
+  const addTrack = (track) =>{
+    // provides a way to add to playlistTracks state. adding a track to list of existing tracks.
+    setPlaylistTracks((prev)=>[...prev, track ]) // pass statesetter a statesetter callback function. 
+  }
   
   return (
     <div>

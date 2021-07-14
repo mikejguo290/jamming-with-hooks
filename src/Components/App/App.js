@@ -2,7 +2,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-import useState from 'react';
+import { useState }from 'react';
 
 function App(props) {
   const [searchResults, setSearchResults] = useState([

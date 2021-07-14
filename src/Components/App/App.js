@@ -21,7 +21,10 @@ function App(props) {
 
   const addTrack = (track) =>{
     // provides a way to add to playlistTracks state. adding a track to list of existing tracks.
-    setPlaylistTracks((prev)=>[...prev, track ]) // pass statesetter a statesetter callback function. 
+    if(!playlistTracks.some(result => result.id === track.id)){
+      // if playlistTracks can find at least one instance. then track is already in the playlist
+      setPlaylistTracks((prev)=>[...prev, track ]) // pass statesetter a statesetter callback function. 
+    }
   }
   
   return (

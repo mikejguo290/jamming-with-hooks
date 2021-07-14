@@ -14,6 +14,7 @@ const renderAction = (isRemoval)=>{
 }; 
 
 function Track (){
+    let isRemoval; // temporary solution
     return (
         <div className="Track">
             <div className="Track-information">

@@ -35,7 +35,7 @@ function App(props) {
         <SearchBar />
         <div className="App-playlist">
           { /* Add a SearchResults component */ } 
-          <SearchResults searchResults={searchResults}/>
+          <SearchResults searchResults={searchResults} onAdd={addTrack} />
           { /* Add a Playlist component */}
           <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
         </div>

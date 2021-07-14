@@ -4,9 +4,9 @@ function TrackList(props) {
     return (
         <div className="TrackList">
             {/* <!-- You will add a map method that renders a set of Track components  --> */}
-            {props.searchResults.map(track => <Track key={track.id} />)}
+            {props.searchResults.map(track => <Track key={track.id} name={track.name} artist={track.artist} album={track.album} />)}
         </div>
     );
-}
+};
 
 export default TrackList;

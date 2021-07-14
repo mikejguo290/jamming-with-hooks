@@ -10,6 +10,15 @@ function App(props) {
     {name:'Physical', artist:'Dua Lipa', album:'Club Future Nostalgia'},
     {name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
   ]);
+
+  const [playlistName, setPlaylistName] = useState('New Playlist');
+  
+  const [playlistTracks, setPlaylistTracks] = useState([
+    {name:'Hang with me', artist:'Robyn', album:'Body Talk Pt. 1'},
+    {name:'Call your girlfriend', artist:'Robyn', album:'Body Talk'},
+    {name:'Be mine', artist:'Robyn', album:'Robyn'}
+  ])
+  
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>

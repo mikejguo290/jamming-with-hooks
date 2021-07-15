@@ -26,6 +26,12 @@ function App(props) {
       setPlaylistTracks((prev)=>[...prev, track ]) // pass statesetter a statesetter callback function. 
     }
   }
+
+  const removeTrack => (track)=>{
+    if(playlistTracks.filter(result => result.id === track.id)){
+      setPlaylistTracks((prev)=>[prev.filter(t => t.id !== track.id)]);
+    }
+  }
   
   return (
     <div>
@@ -37,7 +43,7 @@ function App(props) {
           { /* Add a SearchResults component */ } 
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
           { /* Add a Playlist component */}
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
+          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack}/>
         </div>
       </div>
     </div>

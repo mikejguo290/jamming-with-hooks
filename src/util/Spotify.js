@@ -1,4 +1,6 @@
 let accessToken;
+const clientID='0a66fe9778db4fa8923d80227cc6f6d9';
+const redirectURI='http://localhost:3000/';
 
 const Spotify = {
     //create Spotify module as an object
@@ -43,7 +45,7 @@ const Spotify = {
 
 
         // using implicit grant flow
-        //https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow
+        // documentation - https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow
 
         // 1. Redirect the user to the /authorize endpoint of the Accounts service:
         // https://accounts.spotify.com/authorize?client_id={}&redirect_uri={}&scope={}?state={}

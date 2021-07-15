@@ -11,7 +11,7 @@ function App(props) {
     {id: 3, name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
   ]);
 
-  const [playlistName, setPlaylistName] = useState('');
+  const [playlistName, setPlaylistName] = useState('New Playlist');
   
   const [playlistTracks, setPlaylistTracks] = useState([
     {id:4, name:'Hang with me', artist:'Robyn', album:'Body Talk Pt. 1'},

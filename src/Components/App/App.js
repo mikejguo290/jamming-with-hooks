@@ -11,6 +11,11 @@ function App(props) {
     {id: 3, name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
   ]);
 
+  const search = (searchTerm) =>{
+    // function that takes in a search term and use it to fetch data from spotify API
+    console.log(searchTerm);
+  }
+
   const [playlistName, setPlaylistName] = useState('New Playlist');
   
   const [playlistTracks, setPlaylistTracks] = useState([
@@ -44,7 +49,7 @@ function App(props) {
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
         {/* Add a SearchBar component */}
-        <SearchBar />
+        <SearchBar onSearch={search}/>
         <div className="App-playlist">
           { /* Add a SearchResults component */ } 
           <SearchResults searchResults={searchResults} onAdd={addTrack} />

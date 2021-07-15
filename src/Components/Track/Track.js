@@ -11,7 +11,7 @@ function Track (props){
     const renderAction = () =>{
         // displays a <button> element with - as its content if the isRemoval property is true, and a + <button> element if the isRemoval property is false
         if (isRemoval){
-            return (<button className="Track-action">-</button>);
+            return (<button className="Track-action" onClick={removeTrack}>-</button>);
         }else{
             return (<button className="Track-action" onClick={addTrack}>+</button>);
         };
@@ -20,6 +20,11 @@ function Track (props){
     const addTrack = () => {
         // wrapper for the function passed down from App of the same name. 
         props.onAdd(props.track);
+    }
+
+    const removeTrack = () => {
+        // wrapper for the function passed down from App of the same name. 
+        props.onRemove(props.track);
     }
 
     return (

@@ -1,7 +1,7 @@
 import './SearchBar.css';
 import { useState } from 'react';
 
-function searchBar(props){
+function SearchBar(props){
     const [searchTerm, setSearchTerm] = useState('');
     /* where to keep this search term state? this is similar to playlistName 
     and yet it isn't tracked at App level? contravenes the 4th principle of thinking in react.  
@@ -24,4 +24,4 @@ function searchBar(props){
     )
 }
 
-export default searchBar;
+export default SearchBar;

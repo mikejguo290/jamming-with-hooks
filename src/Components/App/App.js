@@ -32,6 +32,12 @@ function App(props) {
       setPlaylistTracks((prev)=> prev.filter(t => t.id !== track.id)); // prev.filter returns a list. incorrect to write [prev.filter()] ,[...prev.filter()] is acceptable. 
     }
   }
+
+  const updatePlaylistName = (name) => {
+    // accepts a name and updates the playlistName state with it.
+    // pass updatePlaylistName as prop onNameChange to Playlist.
+    setPlaylistName(name);
+  }
   
   return (
     <div>
@@ -43,7 +49,7 @@ function App(props) {
           { /* Add a SearchResults component */ } 
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
           { /* Add a Playlist component */}
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack}/>
+          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onNameChange={updatePlaylistName} onRemove={removeTrack}/>
         </div>
       </div>
     </div>

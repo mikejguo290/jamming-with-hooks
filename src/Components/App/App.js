@@ -27,9 +27,9 @@ function App(props) {
     }
   }
 
-  const removeTrack => (track)=>{
+  const removeTrack = (track)=>{
     if(playlistTracks.filter(result => result.id === track.id)){
-      setPlaylistTracks((prev)=>[prev.filter(t => t.id !== track.id)]);
+      setPlaylistTracks((prev)=> prev.filter(t => t.id !== track.id)); // prev.filter returns a list. incorrect to write [prev.filter()] ,[...prev.filter()] is acceptable. 
     }
   }
   

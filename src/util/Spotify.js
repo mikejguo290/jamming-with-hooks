@@ -15,6 +15,8 @@ const Spotify = {
         Leans heavily into a previously untaught API - Uses windows API three times 
         to implement it this way, I should have an idea of what getAccessToken should return, then think though how it might deal with each scenario.
         and finaly in which order. 
+        the getAccessToken function returns either an accessToken to the module, or extract it from final url, or get the final url. with a few redirects too. 
+        It returns three disparate things. almost as if it is trying to do too much.
         */
 
          // using implicit grant flow
@@ -26,7 +28,7 @@ const Spotify = {
         // 2. get access token from the final url if user grants permission. 
         //https://example.com/callback#access_token=NwAExz...
 
-        // check if access_token is already set, if so, return it 
+        // check if accessToken is already set in global variable, if so, return it 
         if(accessToken){
             return accessToken;
         };

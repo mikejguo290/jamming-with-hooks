@@ -1,5 +1,6 @@
 let accessToken;
 let userID;
+let playlistID;
 const clientID='0a66fe9778db4fa8923d80227cc6f6d9';
 const redirectURI='http://localhost:3000/';
 
@@ -119,11 +120,30 @@ const Spotify = {
         }
     },
 
-    async savePlaylist(playlistName, TrackURIs){
+    async savePlaylist(playlistName, trackURIs){
         //1. GET current user’s ID
         //2. POST a new playlist with the input name to the current user’s Spotify account. Receive the playlist ID back from the request.
         //2. POST tracks to API to add tracks to playlist with playlist id and track uri
-        
+        if (!playlistName || trackURIs.length===0){
+            // if either are blank. return from function.
+            return;
+        }
+        // fetch() userID from spotify.
+        try{
+            const response = await fetch('https://api.spotify.com/v1/me', {
+                headers:{
+                    'Authorization':`Bearer ${accessToken}`
+                }
+            });
+            if (response.ok){
+                const jsonResponse = await response.json();
+                userID = jsonResponse.id;
+            }
+            throw new Error('request has failed!');
+        }catch(error){
+            console.log(error);
+        }
+    
     }
 }
 

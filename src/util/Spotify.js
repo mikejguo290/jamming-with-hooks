@@ -1,4 +1,5 @@
 let accessToken;
+let userID;
 const clientID='0a66fe9778db4fa8923d80227cc6f6d9';
 const redirectURI='http://localhost:3000/';
 
@@ -118,6 +119,12 @@ const Spotify = {
         }
     },
 
+    async savePlaylist(playlistName, TrackURIs){
+        //1. GET current user’s ID
+        //2. POST a new playlist with the input name to the current user’s Spotify account. Receive the playlist ID back from the request.
+        //2. POST tracks to API to add tracks to playlist with playlist id and track uri
+        
+    }
 }
 
 export default Spotify;

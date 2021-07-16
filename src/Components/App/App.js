@@ -7,9 +7,9 @@ import Spotify from '../../util/Spotify';
 
 function App(props) {
   const [searchResults, setSearchResults] = useState([
-    {id: 1, name:'I Feel It Coming', artist:'The Weeknd', album:'Starboy'},
-    {id: 2, name:'Physical', artist:'Dua Lipa', album:'Future Nostalgia'},
-    {id: 3, name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
+    {id: '3dhjNA0jGA8vHBQ1VdD6vV', name:'I Feel It Coming', artist:'The Weeknd', album:'Starboy', uri:'spotify:track:3dhjNA0jGA8vHBQ1VdD6vV'},
+    {id: '3AzjcOeAmA57TIOr9zF1ZW', name:'Physical', artist:'Dua Lipa', album:'Future Nostalgia', uri:'spotify:track:3AzjcOeAmA57TIOr9zF1ZW'},
+    {id: '6ocbgoVGwYJhOv1GgI9NsF', name:'7 rings', artist:'Ariana Grande', album:'thank u, next', uri:'spotify:track:6ocbgoVGwYJhOv1GgI9NsF'}
   ]);
   
   
@@ -37,9 +37,9 @@ function App(props) {
   }
   
   const [playlistTracks, setPlaylistTracks] = useState([
-    {id:4, name:'Hang with me', artist:'Robyn', album:'Body Talk Pt. 1'},
-    {id:5, name:'Call your girlfriend', artist:'Robyn', album:'Body Talk'},
-    {id:6, name:'Be mine', artist:'Robyn', album:'Robyn'}
+    {id:'1U5XoeYZ4oOftvEKpAJUmP', name:'Hang With Me', artist:'Robyn', album:'Body Talk', uri:'spotify:track:1U5XoeYZ4oOftvEKpAJUmP'},
+    {id:'15hut9fX33giUAMyycwvsV', name:'Call Your Girlfriend', artist:'Robyn', album:'Body Talk', uri:'spotify:track:15hut9fX33giUAMyycwvsV'},
+    {id:'0ugOBAIRdG3Mto4SSxGr5r', name:'Be Mine!', artist:'Robyn', album:'Robyn', uri:'spotify:track:0ugOBAIRdG3Mto4SSxGr5r'}
   ])
 
   const addTrack = (track) =>{

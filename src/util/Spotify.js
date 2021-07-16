@@ -93,8 +93,16 @@ const Spotify = {
             if(response.ok){
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); // testing code
-
-                return jsonResponse;
+                
+                // map the jsonResponse to App's state - searchResult's track's data structure before returning
+                const tracks = jsonResponse.tracks.items().map(t => {
+                    return {
+                        name: t.name,
+                        artist: t.artists[0].name,
+                        album: t.album.name,
+                        }
+                    });
+                return tracks;
                 }
             throw new Error('Request has failed!');
         }catch(error){

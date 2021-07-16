@@ -17,6 +17,10 @@ const Spotify = {
         and finaly in which order. 
         the getAccessToken function returns either an accessToken to the module, or extract it from final url, or get the final url. with a few redirects too. 
         It returns three disparate things. almost as if it is trying to do too much.
+
+        ONE MORE THING
+        if by now, you are tired of trying for yourself and hitting a brick wall. you start to follow
+        the instructions instead. well, it never mentions where and how to use Spotify.getAccessToken!
         */
 
          // using implicit grant flow
@@ -76,8 +80,8 @@ const Spotify = {
     async search(searchTerm){
         // function to accept a search term input, use it to make a Spotify request and then return
         // response as a list of tracks.
-        const type = 'track'
-        const url = `https://api.spotify.com/v1/search?q=${searchTerm}&type=${type}&market=from_token&limit=20`;
+        const type = 'track';
+        const url = `https://api.spotify.com/v1/search?q=${searchTerm}&type=${type}&limit=20`;
         
         // make function async ... await. wrap fetch in try ... catch block.
         try{
@@ -87,8 +91,10 @@ const Spotify = {
                 }
             });
             if(response.ok){
-                console.log(response); // testing code
-                return response;
+                const jsonResponse = await response.json();
+                console.log(jsonResponse); // testing code
+
+                return jsonResponse;
                 }
             throw new Error('Request has failed!');
         }catch(error){

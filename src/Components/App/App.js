@@ -27,13 +27,13 @@ function App(props) {
   
   const [playlistName, setPlaylistName] = useState('New Playlist');
 
-  const savePlaylist=()=>{
+  const savePlaylist = async() =>{
     //save a user’s playlist to their Spotify account and resets the state of the playlist name and tracks array.
     const trackURIs = playlistTracks.map(t => t.uri);
     //console.log(playlistName); // placeholder for util's Spotify method's first paramter - playlistName
     //console.log(trackURIs)// placeholder for util's Spotify method - second parameter - playlistName
     Spotify.getAccessToken(); // if user have it. it will return and do nothing. if not. it will prompt user to log in again.
-    Spotify.savePlaylist(playlistName, trackURIs);
+    await Spotify.savePlaylist(playlistName, trackURIs);
 
     // reset playlistName and clear playlist tracks on display afterwards. 
     setPlaylistName('New Playlist');

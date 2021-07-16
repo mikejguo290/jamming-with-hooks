@@ -71,7 +71,30 @@ const Spotify = {
         //https://example.com/callback#access_token=NwAExz...
         
 
-    }
+    },
+
+    async search(searchTerm){
+        // function to accept a search term input, use it to make a Spotify request and then return
+        // response as a list of tracks.
+        const type = 'track'
+        const url = `https://api.spotify.com/v1/search?q=${searchTerm}&type=${type}&market=from_token&limit=20`;
+        
+        // make function async ... await. wrap fetch in try ... catch block.
+        try{
+            const response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+            if(response.ok){
+                console.log(response); // testing code
+                return response;
+                }
+            throw new Error('Request has failed!');
+        }catch(error){
+            console.log(error);
+        }
+    },
 
 }
 

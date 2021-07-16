@@ -101,6 +101,7 @@ const Spotify = {
                         name: t.name,
                         artist: t.artists[0].name,
                         album: t.album.name,
+                        uri: t.uri,
                         }
                     });
                 return tracks;

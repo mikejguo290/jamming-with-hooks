@@ -94,6 +94,12 @@ const Spotify = {
                 const jsonResponse = await response.json();
                 console.log(jsonResponse); // testing code
                 
+                // if jsonResponse doesn't have a tracks property. return empty array. 
+                // this makes the jsonRes.tracks.items.map() safe.
+                if (!jsonResponse.tracks){
+                    return [];
+                };
+                
                 // map the jsonResponse to App's state - searchResult's track's data structure before returning
                 const tracks = jsonResponse.tracks.items.map(t => {
                     return {

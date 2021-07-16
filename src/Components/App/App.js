@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import { useState }from 'react';
+import Spotify from '../../util/Spotify';
 
 function App(props) {
   const [searchResults, setSearchResults] = useState([
@@ -10,12 +11,14 @@ function App(props) {
     {id: 2, name:'Physical', artist:'Dua Lipa', album:'Club Future Nostalgia'},
     {id: 3, name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
   ]);
-
+  
+  
   const search = (searchTerm) =>{
     // function that takes in a search term and use it to fetch data from spotify API
-    console.log(searchTerm);
+    Spotify.getAccessToken(); // getAccessToken is called before every search request!
+    Spotify.search(searchTerm);
   }
-
+  
   const [playlistName, setPlaylistName] = useState('New Playlist');
   
   const [playlistTracks, setPlaylistTracks] = useState([

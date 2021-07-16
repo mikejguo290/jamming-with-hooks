@@ -95,8 +95,9 @@ const Spotify = {
                 console.log(jsonResponse); // testing code
                 
                 // map the jsonResponse to App's state - searchResult's track's data structure before returning
-                const tracks = jsonResponse.tracks.items().map(t => {
+                const tracks = jsonResponse.tracks.items.map(t => {
                     return {
+                        id: t.id,
                         name: t.name,
                         artist: t.artists[0].name,
                         album: t.album.name,

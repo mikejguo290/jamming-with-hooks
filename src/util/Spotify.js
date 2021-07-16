@@ -144,6 +144,35 @@ const Spotify = {
             console.log(error);
         }
     
+        // fetch() POST to create new playlist
+        if(!userID){
+            // if no userID, stop immediately
+            return;
+        };
+
+        try{
+            const createPlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
+            const response = await fetch(createPlaylistURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                body: {
+                    name: JSON.stringify(playlistName)
+                }
+            });
+
+            if(response.ok){
+                const jsonResponse = await response.json();
+                playlistID = jsonResponse.id;
+            }
+
+        }catch(error){
+            console.log(error);
+        }
+
+        // fetch() POST to use playlistID and track URI array to create new playlist
     }
 }
 

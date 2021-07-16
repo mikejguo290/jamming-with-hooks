@@ -130,8 +130,8 @@ const Spotify = {
         let userID;
         const userAccessToken = accessToken; // current user's access token , grab it just once! instead of three separate times. 
         const headers = {
+            'Authorization':`Bearer ${userAccessToken}`,
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${userAccessToken}`
         };
 
         try{
@@ -143,10 +143,12 @@ const Spotify = {
             if (response.ok){
                 const jsonResponse = await response.json();
                 userID = jsonResponse.id;
+                console.log(`got user id - ${userID}`);
+            }else{
+                throw new Error('request has failed!');
             }
-            throw new Error('request has failed!');
         }catch(error){
-            console.log(error);
+            console.log(error.message);
         }
     
         // fetch() POST to create new playlist
@@ -154,41 +156,45 @@ const Spotify = {
             // if no userID, return immediately
             return;
         };
-
+        console.log(`userAccessToken is ${userAccessToken}`)
+        console.log(`user id is ${userID}`);
+        
         let playlistID;
+        let data = {'name': playlistName}; // will need to turn this data into json before sending it on. name work. but 'name' as string doesn't?!
         try{
             const createPlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
             const response = await fetch(createPlaylistURL, {
-                method: 'POST',
                 headers: headers,
-                body: {
-                    'name': JSON.stringify(playlistName)
-                }
+                body: JSON.stringify(data),
+                method: 'POST',
             });
 
             if(response.ok){
                 const jsonResponse = await response.json();
                 playlistID = jsonResponse.id;
+                console.log('got play list id');
+
+            }else{
+                throw new Error('request has failed!');
             }
 
         }catch(error){
-            console.log(error);
+            console.log(error.message);
         }
-
+        console.log('play list id is');
+        console.log(playlistID);
         // fetch() POST to use playlistID and track URI array to create new playlist
         if (!playlistID){
             // if no userID, return immediately
             return;
         }
-
+        data = {'uris': trackURIs}
         try{
             const addTracksURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
             const response = await fetch(addTracksURL, {
                 method: 'POST',
                 headers: headers,
-                body:{
-                    'uris': JSON.stringify(trackURIs);
-                }
+                body:JSON.stringify(data)
             });
             if (response.ok){
                 console.log(response); // testing. expect spotify snapshot ID.

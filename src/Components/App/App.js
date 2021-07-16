@@ -7,8 +7,8 @@ import Spotify from '../../util/Spotify';
 
 function App(props) {
   const [searchResults, setSearchResults] = useState([
-    {id: 1, name:'I feel it coming', artist:'The Weeknd', album:'Starboy'},
-    {id: 2, name:'Physical', artist:'Dua Lipa', album:'Club Future Nostalgia'},
+    {id: 1, name:'I Feel It Coming', artist:'The Weeknd', album:'Starboy'},
+    {id: 2, name:'Physical', artist:'Dua Lipa', album:'Future Nostalgia'},
     {id: 3, name:'7 rings', artist:'Ariana Grande', album:'thank u, next'}
   ]);
   
@@ -21,10 +21,20 @@ function App(props) {
     // when variable is assigned an expression. it tries to get the value that instant. need async await. 
     
     // update state searchResults with state setter. 
+    console.log(tracks);
     setSearchResults(tracks);
   }
   
   const [playlistName, setPlaylistName] = useState('New Playlist');
+
+  const savePlaylist=()=>{
+    //save a user’s playlist to their Spotify account and resets the state of the playlist name and tracks array.
+    const trackURIs = playlistTracks.map(t => t.uri);
+    console.log(playlistName); // placeholder for util's Spotify method's first paramter - playlistName
+    console.log(trackURIs)// placeholder for util's Spotify method - second parameter - playlistName
+    setPlaylistName('');
+    setPlaylistTracks([]);
+  }
   
   const [playlistTracks, setPlaylistTracks] = useState([
     {id:4, name:'Hang with me', artist:'Robyn', album:'Body Talk Pt. 1'},

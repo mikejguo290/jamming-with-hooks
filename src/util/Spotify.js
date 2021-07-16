@@ -128,10 +128,16 @@ const Spotify = {
         }
         // fetch() userID from spotify.
         let userID;
+        const userAccessToken = accessToken; // current user's access token , grab it just once! instead of three separate times. 
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization':`Bearer ${userAccessToken}`
+        };
+
         try{
             const response = await fetch('https://api.spotify.com/v1/me', {
                 headers:{
-                    'Authorization':`Bearer ${accessToken}`
+                    'Authorization':`Bearer ${userAccessToken}`
                 }
             });
             if (response.ok){
@@ -154,10 +160,7 @@ const Spotify = {
             const createPlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
             const response = await fetch(createPlaylistURL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                },
+                headers: headers,
                 body: {
                     'name': JSON.stringify(playlistName)
                 }
@@ -177,21 +180,18 @@ const Spotify = {
             // if no userID, return immediately
             return;
         }
-        
+
         try{
             const addTracksURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
             const response = await fetch(addTracksURL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                },
+                headers: headers,
                 body:{
                     'uris': JSON.stringify(trackURIs);
                 }
             });
             if (response.ok){
-                console.log(response);
+                console.log(response); // testing. expect spotify snapshot ID.
             }else{
                 throw new Error('request has failed!')
             }

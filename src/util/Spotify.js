@@ -1,6 +1,4 @@
 let accessToken;
-let userID;
-let playlistID;
 const clientID='0a66fe9778db4fa8923d80227cc6f6d9';
 const redirectURI='http://localhost:3000/';
 
@@ -129,6 +127,7 @@ const Spotify = {
             return;
         }
         // fetch() userID from spotify.
+        let userID;
         try{
             const response = await fetch('https://api.spotify.com/v1/me', {
                 headers:{
@@ -146,10 +145,11 @@ const Spotify = {
     
         // fetch() POST to create new playlist
         if(!userID){
-            // if no userID, stop immediately
+            // if no userID, return immediately
             return;
         };
 
+        let playlistID;
         try{
             const createPlaylistURL = `https://api.spotify.com/v1/users/${userID}/playlists`;
             const response = await fetch(createPlaylistURL, {
@@ -159,7 +159,7 @@ const Spotify = {
                     'Authorization': `Bearer ${accessToken}`
                 },
                 body: {
-                    name: JSON.stringify(playlistName)
+                    'name': JSON.stringify(playlistName)
                 }
             });
 
@@ -173,6 +173,32 @@ const Spotify = {
         }
 
         // fetch() POST to use playlistID and track URI array to create new playlist
+        if (!playlistID){
+            // if no userID, return immediately
+            return;
+        }
+        
+        try{
+            const addTracksURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`;
+            const response = await fetch(addTracksURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                body:{
+                    'uris': JSON.stringify(trackURIs);
+                }
+            });
+            if (response.ok){
+                console.log(response);
+            }else{
+                throw new Error('request has failed!')
+            }
+
+        }catch(error){
+            console.log(error)
+        }
     }
 }
 

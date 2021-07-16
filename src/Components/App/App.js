@@ -13,10 +13,15 @@ function App(props) {
   ]);
   
   
-  const search = (searchTerm) =>{
+   const search = async (searchTerm) =>{
     // function that takes in a search term and use it to fetch data from spotify API
     Spotify.getAccessToken(); // getAccessToken is called before every search request!
-    Spotify.search(searchTerm);
+    // use the results from calling Spotify.search to set state searchResults.;
+    const tracks = await Spotify.search(searchTerm); 
+    // when variable is assigned an expression. it tries to get the value that instant. need async await. 
+    
+    // update state searchResults with state setter. 
+    setSearchResults(tracks);
   }
   
   const [playlistName, setPlaylistName] = useState('New Playlist');

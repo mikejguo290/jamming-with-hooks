@@ -32,7 +32,7 @@ function App(props) {
     const trackURIs = playlistTracks.map(t => t.uri);
     console.log(playlistName); // placeholder for util's Spotify method's first paramter - playlistName
     console.log(trackURIs)// placeholder for util's Spotify method - second parameter - playlistName
-    setPlaylistName('');
+    setPlaylistName('New Playlist');
     setPlaylistTracks([]);
   }
   
@@ -72,7 +72,7 @@ function App(props) {
           { /* Add a SearchResults component */ } 
           <SearchResults searchResults={searchResults} onAdd={addTrack} />
           { /* Add a Playlist component */}
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onNameChange={updatePlaylistName} onRemove={removeTrack}/>
+          <Playlist playlistName={playlistName} onSave={savePlaylist} playlistTracks={playlistTracks} onNameChange={updatePlaylistName} onRemove={removeTrack}/>
         </div>
       </div>
     </div>
